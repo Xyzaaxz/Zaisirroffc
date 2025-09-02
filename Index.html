@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ZAISIRR OFFICIAL — Produk & Payment</title>
+  <style>
+    body { margin:0; font-family:"Orbitron", Arial, sans-serif; color:#fff; background:#000; overflow-x:hidden; }
+    canvas#bgCanvas { position:fixed; inset:0; z-index:-1; background:radial-gradient(circle at top, #0f0f1f, #000); }
+
+    /* Neon anim */
+    @keyframes neonPulse { 
+      0%{text-shadow:0 0 5px #0ff,0 0 10px #0ff;} 
+      50%{text-shadow:0 0 20px #0ff,0 0 35px #0ff;} 
+      100%{text-shadow:0 0 5px #0ff,0 0 10px #0ff;} 
+    }
+    @keyframes neonBorder { 
+      0%,100%{box-shadow:0 0 10px #0ff, inset 0 0 10px #0ff;} 
+      50%{box-shadow:0 0 24px #0ff, inset 0 0 18px #0ff;} 
+    }
+    @keyframes neonClick { 
+      0%{transform:scale(1)} 
+      50%{transform:scale(1.05)} 
+      100%{transform:scale(1)} 
+    }
+
+    header { 
+      text-align:center; 
+      padding:18px 12px; 
+      font-size:2rem; 
+      color:#0ff; 
+      animation:neonPulse 2.2s infinite; 
+    }
+    .since {
+      font-size: 1rem;
+      color: #0ff;
+      margin-top: 4px;
+      animation: neonPulse 2.2s infinite;
+    }
+
+    nav { 
+      display:flex; 
+      justify-content:center; 
+      gap:10px; 
+      flex-wrap:wrap; 
+      background:rgba(0,0,0,.75); 
+      padding:12px; 
+      border-top:2px solid #0ff; 
+      border-bottom:2px solid #0ff; 
+      animation:neonBorder 3.2s infinite; 
+      position:sticky; 
+      top:0; 
+      z-index:10; 
+    }
+    nav button { 
+      background:#000; 
+      color:#0ff; 
+      border:1px solid #0ff; 
+      border-radius:10px; 
+      padding:10px 16px; 
+      cursor:pointer; 
+      font-weight:bold; 
+      box-shadow:0 0 10px #0ff; 
+      transition:.25s; 
+    }
+    nav button:hover, nav button.active { 
+      background:#0ff; 
+      color:#000; 
+      transform:translateY(-1px) scale(1.04); 
+    }
+
+    .container { padding:16px; display:grid; place-items:center; }
+    .card { 
+      width:100%; 
+      max-width:920px; 
+      background:rgba(10,10,20,.9); 
+      border:1px solid #0ff; 
+      border-radius:14px; 
+      padding:16px; 
+      display:none; 
+      color:#0ff; 
+      animation:neonBorder 4s infinite; 
+    }
+    .card.active { display:block; }
+    .card h2 { text-align:center; color:#0ff; margin:4px 0 10px; animation:neonPulse 2.2s infinite; }
+    .card.clickEffect { animation:neonClick .45s; }
+    pre { 
+      background:rgba(0,0,0,.55); 
+      border-radius:10px; 
+      padding:12px; 
+      white-space:pre-wrap; 
+      box-shadow:0 0 10px #0ff inset; 
+      font-family:"Courier New", monospace; 
+    }
+    .qris { max-width:260px; display:block; margin:10px auto; border-radius:12px; box-shadow:0 0 14px #0ff; }
+
+    @keyframes neonPulseIcon {
+      0%, 100% { filter: drop-shadow(0 0 3px #0ff) drop-shadow(0 0 6px #0ff); }
+      50% { filter: drop-shadow(0 0 6px #0ff) drop-shadow(0 0 12px #0ff); }
+    }
+    .btn-neon svg { animation: neonPulseIcon 2s infinite; }
+
+    .btn-glow {
+      display: inline-block;
+      margin: 12px auto;
+      padding: 12px 20px;
+      color: #000;
+      background: #0ff;
+      border-radius: 12px;
+      font-weight: bold;
+      text-decoration: none;
+      box-shadow: 0 0 12px #0ff, 0 0 24px #0ff;
+      transition: 0.3s;
+    }
+    .btn-glow:hover {
+      background: #000;
+      color: #0ff;
+      box-shadow: 0 0 20px #0ff, inset 0 0 10px #0ff;
+      transform: scale(1.05);
+    }
+
+    .footer {
+      text-align: center;
+      padding: 14px;
+      font-size: 0.9rem;
+      color: #0ff;
+      border-top: 1px solid #0ff;
+      margin-top: 20px;
+      animation: neonPulse 2.2s infinite;
+    }
+  </style>
+</head>
+<body>
+
+<canvas id="bgCanvas"></canvas>
+
+<main id="app">
+  <header>
+    𝘡𝘈𝘐𝘚𝘐𝘙𝘙 OFFICIAL
+    <div class="since">𝘚𝘐𝘕𝘊𝘌 19-09-2009</div>
+  </header>
+
+  <nav>
+    <button onclick="showCard('produk')" class="active">Produk</button>
+    <button onclick="showCard('𝘈𝘗𝘒')">𝘔𝘠 𝘈𝘗𝘒</button>
+    <button onclick="showCard('kontak')">Kontak</button>
+    <button onclick="showCard('payment')">Payment</button>
+  </nav>
+
+  <div class="container">
+    <!-- PRODUK -->
+    <section id="produk" class="card active">
+      <h2>Produk Utama</h2>
+      <pre>
+... (isi produk tetap) ...
+      </pre>
+    </section>
+
+    <!-- 𝘈𝘗𝘒 -->
+    <section id="𝘈𝘗𝘒" class="card">
+      <h2>𝘔𝘠 𝘈𝘗𝘗𝘚</h2>
+      <pre>
+... (isi apk tetap) ...
+      </pre>
+    </section>
+
+    <!-- KONTAK -->
+    <section id="kontak" class="card">
+      <h2>Kontak</h2>
+      <div class="kontak-box">
+        <p>𝘏𝘐 𝘔𝘠 𝘕𝘈𝘔𝘌 𝘐𝘚 𝘡𝘈𝘐𝘚𝘐𝘙𝘙</p>
+
+        <a href="https://t.me/Zaisirrr" target="_blank" class="btn-neon">Telegram Owner</a>
+        <a href="https://t.me/Zaisirrnot" target="_blank" class="btn-neon">Testimoni</a>
+
+        <a href="https://t.me/Zaisirrr" target="_blank" class="btn-glow">
+          Hubungi Saya Sekarang
+        </a>
+      </div>
+    </section>
+
+    <!-- PAYMENT -->
+    <section id="payment" class="card">
+      <h2>Payment</h2>
+      <p style="text-align:center">Scan QRIS di bawah untuk pembayaran:</p>
+      <img class="qris" src="https://files.catbox.moe/dsq7lw.jpg" alt="QRIS"/>
+      <pre>
+Dana : 085143076397
+A/N  : Achmad
+      </pre>
+    </section>
+  </div>
+</main>
+
+<!-- Footer -->
+<footer class="footer">
+  <p>© 2009 - 2025 𝘡𝘈𝘐𝘚𝘐𝘙𝘙 𝘖𝘍𝘍𝘊𝘐𝘈𝘓</p>
+</footer>
+
+<!-- Suara klik -->
+<audio id="clickSound" src="https://assets.mixkit.co/sfx/preview/mixkit-select-click-1109.mp3" preload="auto"></audio>
+
+<!-- Background Music -->
+<audio id="bgMusic" src="https://d.top4top.io/m_3530koyik1.mp3" loop hidden></audio>
+
+<script>
+  function showCard(id){
+    document.querySelectorAll('.card').forEach(c=>c.classList.remove('active'));
+    const card=document.getElementById(id);
+    card.classList.add('active'); card.classList.add('clickEffect');
+    setTimeout(()=>card.classList.remove('clickEffect'), 450);
+    document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
+    event.target.classList.add('active');
+    window.scrollTo({top:0, behavior:'smooth'});
+    playSound();
+    startMusic();
+  }
+  function playSound(){ const a=document.getElementById('clickSound'); a.currentTime=0; a.play(); }
+
+  const canvas=document.getElementById('bgCanvas'), ctx=canvas.getContext('2d');
+  function rs(){ canvas.width=innerWidth; canvas.height=innerHeight; } window.addEventListener('resize',rs); rs();
+  const stars=Array.from({length:160}, ()=>({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Math.random()*1.8+0.3,s:Math.random()*0.5+0.15}));
+  (function loop(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    ctx.fillStyle='#fff';
+    stars.forEach(st=>{ ctx.beginPath(); ctx.arc(st.x,st.y,st.r,0,Math.PI*2); ctx.fill(); st.y+=st.s; if(st.y>canvas.height){ st.y=0; st.x=Math.random()*canvas.width; } });
+    requestAnimationFrame(loop);
+  })();
+
+  let musicStarted = false;
+  function startMusic(){
+    if(musicStarted) return;
+    const bg = document.getElementById("bgMusic");
+    bg.play().catch(()=>{});
+    musicStarted = true;
+  }
+</script>
+</body>
+</html>
